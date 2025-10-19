@@ -1,9 +1,9 @@
 SRC := $(wildcard ../src/*.ts ../types/*.ts)
 
 PKG_DST := ../dist/package.json
-MJS_DST := ../dist/form-field.mjs
-CJS_DST := ../dist/form-field.cjs
-MINJS_DST := ../dist/form-field.min.js
+MJS_DST := ../dist/html-form-field.mjs
+CJS_DST := ../dist/html-form-field.cjs
+MINJS_DST := ../dist/html-form-field.min.js
 TEST_DST := ../build/test.browser.js
 CHAI_DST := ../build/chai.browser.js
 

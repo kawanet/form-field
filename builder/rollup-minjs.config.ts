@@ -8,7 +8,7 @@ const rollupConfig: RollupOptions = {
     input: "../src/index.ts",
 
     output: {
-        file: "../dist/form-field.min.js",
+        file: "../dist/html-form-field.min.js",
         format: "iife",
         name: "formField",
         outro: "if (typeof module !== 'undefined') { module.exports = exports }\nreturn exports.formField;",

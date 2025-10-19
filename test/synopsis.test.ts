@@ -28,7 +28,7 @@ describe("synopsis", async () => {
     const document = {querySelector: (selector: string) => form}
 
     it("SYNOPSIS", () => {
-        // import {formField} from "form-field";
+        // import {formField} from "html-form-field";
 
         interface Context {
             nickname: string

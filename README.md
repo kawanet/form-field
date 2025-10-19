@@ -1,21 +1,21 @@
-# form-field
+# html-form-field
 
 Unified interface for HTML form fields with synchronized binding to object properties
 
-[![Node.js CI](https://github.com/kawanet/form-field/workflows/Node.js%20CI/badge.svg)](https://github.com/kawanet/form-field/actions/)
-[![npm version](https://img.shields.io/npm/v/form-field)](https://www.npmjs.com/package/form-field)
-[![gzip size](https://img.badgesize.io/https://cdn.jsdelivr.net/npm/form-field/dist/form-field.min.js?compression=gzip)](https://cdn.jsdelivr.net/npm/form-field/dist/form-field.min.js)
+[![Node.js CI](https://github.com/kawanet/html-form-field/workflows/Node.js%20CI/badge.svg)](https://github.com/kawanet/html-form-field/actions/)
+[![npm version](https://img.shields.io/npm/v/html-form-field)](https://www.npmjs.com/package/html-form-field)
+[![gzip size](https://img.badgesize.io/https://cdn.jsdelivr.net/npm/html-form-field/dist/html-form-field.min.js?compression=gzip)](https://cdn.jsdelivr.net/npm/html-form-field/dist/html-form-field.min.js)
 
 - Unified getter/setter for text inputs, checkboxes, radio buttons, and select elements
 - Two-way binding between form fields and object properties (synchronized updates in both directions)
 - Built-in change detection with `onChange` and `onWrite` callbacks
-- Small browser build: [form-field.min.js](https://cdn.jsdelivr.net/npm/form-field/dist/form-field.min.js) under 4KB minified, under 2KB gzipped
-- Full TypeScript support - [form-field.d.ts](https://github.com/kawanet/form-field/blob/main/types/form-field.d.ts) for detailed specifications
+- Small browser build: [html-form-field.min.js](https://cdn.jsdelivr.net/npm/html-form-field/dist/html-form-field.min.js) under 4KB minified, under 2KB gzipped
+- Full TypeScript support - [html-form-field.d.ts](https://github.com/kawanet/html-form-field/blob/main/types/html-form-field.d.ts) for detailed specifications
 
 ## SYNOPSIS
 
 ```typescript
-import {formField} from "form-field"
+import {formField} from "html-form-field"
 
 interface Context {
     nickname: string
@@ -98,5 +98,5 @@ formField({
 
 ## LINKS
 
-- https://www.npmjs.com/package/form-field
-- https://github.com/kawanet/form-field
+- https://www.npmjs.com/package/html-form-field
+- https://github.com/kawanet/html-form-field
