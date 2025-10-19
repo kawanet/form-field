@@ -71,9 +71,11 @@ describe("disabled", async () => {
 
         assert.equal(field.name, "SM2")
         assert.equal(field.value, undefined)
-        assert.equal(field.has("SM22"), false)
+        assert.equal(field.items().at(0).disabled, true)
+        assert.equal(field.has("SM21"), false)
 
         field.items().at(0).disabled = false
+        assert.equal(field.items().at(0).disabled, false)
         assert.equal(field.value, "SM21")
         assert.equal(field.has("SM21"), true)
     })
