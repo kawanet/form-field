@@ -15,7 +15,7 @@ describe("document-fragment", async () => {
         </form>
     `)
 
-    it("DocumemtFragment", () => {
+    it("DocumentFragment", () => {
         const field = formField({form, name: "TX"})
         assert.equal(field.name, "TX")
         assert.equal(field.value, "tx1")
