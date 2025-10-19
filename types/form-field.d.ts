@@ -6,6 +6,11 @@ declare namespace formField {
 
     type ItemElement = HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement | HTMLOptionElement
 
+    /**
+     * Extract string keys of T
+     * - If T is undefined: string (allow any name)
+     * - If T is an object: union of keys K where T[K] extends string (strict)
+     */
     type StringKeys<T> = [T] extends [undefined]
         ? string
         : { [K in keyof T]: K extends string ? (T[K] extends string ? K : never) : never }[keyof T];
@@ -22,6 +27,9 @@ declare namespace formField {
 
         /**
          * name of the field element
+         * - When `bindTo` is supplied, TypeScript infers `T` from that object and `name` is restricted
+         *   to keys of the bound object whose value type is `string`.
+         * - When `bindTo` is not supplied (or `T` is not inferred), any string is allowed.
          */
         name: StringKeys<T>
 
@@ -49,6 +57,8 @@ declare namespace formField {
 
         /**
          * delimiter for multiple values (for checkboxes, multi-select)
+         * Default: `,` (comma). Use Unit Separator `\x1F` instead,
+         * if your values may include commas to reduce collisions.
          */
         delim?: string
 
@@ -69,13 +79,18 @@ declare namespace formField {
         readonly name: StringKeys<T>
 
         /**
-         * getter/setter of the value
-         * setter triggers onWrite handler
+         * getter/setter of the value.
+         * setter triggers onWrite handler.
+         * Note: even for checkbox groups / multiple-select, the exposed type is string.
+         * Multiple values are represented as a single string joined by options.delim (default ',').
          */
         value: string
 
         /**
-         * rebind the field element (input, select, textarea)
+         * rebind the field element (input, select, textarea).
+         * Call this when the set of option elements changes (for example when checkboxes,
+         * radio buttons, or select <option> elements are added or removed) so that the
+         * FormField re-scans and rebinds its items to reflect the current DOM.
          */
         reload(): void
 
@@ -132,7 +147,7 @@ declare namespace formField {
          * whether the option is selected (radio, checkbox, select)
          * setter triggers onWrite handler
          */
-        checked?: boolean
+        checked: boolean | undefined
 
         /**
          * method to set the `checked` property silently
@@ -143,12 +158,12 @@ declare namespace formField {
         /**
          * getter/setter of the `disabled` property
          */
-        disabled?: boolean
+        disabled: boolean
 
         /**
-         * text content of the option
+         * text content of the option (if applicable)
          */
-        readonly label?: string
+        readonly label: string | undefined
     }
 }
 

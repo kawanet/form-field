@@ -6,6 +6,12 @@ Unified interface for HTML form fields with synchronized binding to object prope
 [![npm version](https://img.shields.io/npm/v/form-field)](https://www.npmjs.com/package/form-field)
 [![gzip size](https://img.badgesize.io/https://cdn.jsdelivr.net/npm/form-field/dist/form-field.min.js?compression=gzip)](https://cdn.jsdelivr.net/npm/form-field/dist/form-field.min.js)
 
+- Unified getter/setter for text inputs, checkboxes, radio buttons, and select elements
+- Two-way binding between form fields and object properties (synchronized updates in both directions)
+- Built-in change detection with `onChange` and `onWrite` callbacks
+- Small browser build: [form-field.min.js](https://cdn.jsdelivr.net/npm/form-field/dist/form-field.min.js) under 4KB minified, under 2KB gzipped
+- Full TypeScript support - [form-field.d.ts](https://github.com/kawanet/form-field/blob/main/types/form-field.d.ts) for detailed specifications
+
 ## SYNOPSIS
 
 #### Value access
