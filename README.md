@@ -14,8 +14,6 @@ Unified interface for HTML form fields with synchronized binding to object prope
 
 ## SYNOPSIS
 
-#### Value access
-
 ```js
 import {formField} from "form-field"
 
@@ -26,50 +24,6 @@ const nickname = formField({form, name: "nickname"})
 console.log(nickname.value) // current value
 
 nickname.value = "Bob" // update value
-```
-
-#### Property binding
-
-```typescript
-interface Context {
-    nickname: string
-    email: string
-    favo: string
-}
-
-const context = {} as Context
-
-formField({form, name: "nickname", bindTo: context})
-
-console.log(context.nickname) // reads from form field
-
-context.nickname = "John" // updates form field
-```
-
-#### Multiple selections
-
-```js
-const favo = formField({form, name: "favo"})
-
-favo.toggle("tech") // toggle checkbox
-
-favo.toggle("travel", true)
-
-favo.toggle("trading", false)
-
-console.log(favo.has("travel")) // check if selected
-```
-
-#### Change handling and defaults
-
-```js
-formField({
-    form,
-    name: "email",
-    onWrite: ({name, value}) => sessionStorage.setItem(name, value),
-    onChange: ({name, value}) => submitForm(),
-    defaults: [sessionStorage.getItem("email")]
-})
 ```
 
 #### HTML
@@ -87,6 +41,58 @@ formField({
         </li>
     </ul>
 </form>
+```
+
+#### Property binding
+
+```typescript
+interface Context {
+    nickname: string
+    email: string
+    favo: string
+}
+
+const ctx = {} as Context
+
+formField({form, name: "nickname", bindTo: ctx})
+
+console.log(ctx.nickname) // reads from form field
+
+ctx.nickname = "John" // updates form field
+```
+
+#### Multiple selections
+
+```js
+const favo = formField({form, name: "favo", delim: ","})
+
+favo.toggle("tech") // toggle checkbox
+
+favo.toggle("travel", true)
+
+favo.toggle("trading", false)
+
+console.log(favo.has("travel")) // check if selected
+
+// Shortcut to item by index. Equivalent to items().at(index))
+const firstItem = favo.itemAt(0)
+console.log(firstItem.checked)
+
+// Shortcut to item by value. Equivalent to items().find(v => v.value === value)
+const travelItem = favo.itemOf("travel")
+console.log(travelItem.checked)
+```
+
+#### Change handling and defaults
+
+```js
+formField({
+    form,
+    name: "email",
+    onWrite: ({name, value}) => sessionStorage.setItem(name, value),
+    onChange: ({name, value}) => submitForm(),
+    defaults: [sessionStorage.getItem("email")]
+})
 ```
 
 ## LINKS
