@@ -118,6 +118,18 @@ declare namespace formField {
          * check if an option is selected (for checkbox, multi-select)
          */
         has(value: string): boolean
+
+        /**
+         * Shortcut to access an item by index (operates on items()).
+         * Equivalent to items().at(index). Returns undefined if out of range.
+         */
+        itemAt(index: number): FormItem | undefined
+
+        /**
+         * Shortcut to access an item by value (operates on items()).
+         * Returns the first FormItem whose value equals the given value, or undefined if not found.
+         */
+        itemOf(value: string): FormItem | undefined
     }
 
     interface FormItem<E extends ItemElement = ItemElement> {
