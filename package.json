@@ -1,5 +1,5 @@
 {
-  "name": "form-field",
+  "name": "html-form-field",
   "description": "Unified interface for HTML form fields with synchronized binding to object properties",
   "version": "0.1.0",
   "author": "Kawanet",
@@ -32,19 +32,19 @@
   },
   "exports": {
     ".": {
-      "require": "./dist/form-field.cjs",
+      "require": "./dist/html-form-field.cjs",
       "import": {
-        "types": "./types/form-field.d.ts",
-        "default": "./dist/form-field.mjs"
+        "types": "./types/html-form-field.d.ts",
+        "default": "./dist/html-form-field.mjs"
       }
     }
   },
   "files": [
     "LICENSE",
     "README.md",
-    "dist/form-field.cjs",
-    "dist/form-field.min.js",
-    "dist/form-field.mjs",
+    "dist/html-form-field.cjs",
+    "dist/html-form-field.min.js",
+    "dist/html-form-field.mjs",
     "dist/package.json",
     "src/*.ts",
     "types/*.d.ts"
@@ -60,5 +60,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "types": "types/form-field.d.ts"
+  "types": "types/html-form-field.d.ts"
 }

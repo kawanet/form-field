@@ -1,5 +1,5 @@
 /**
- * form-field - Unified interface for HTML form fields with synchronized binding to object properties
+ * html-form-field - Unified interface for HTML form fields with synchronized binding to object properties
  */
 declare namespace formField {
     type FieldElement = HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement | HTMLSelectElement

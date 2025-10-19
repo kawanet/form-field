@@ -1,4 +1,4 @@
-import type {formField as NS, FormField, FormFieldOptions} from "../types/form-field.d.ts"
+import type {formField as NS, FormField, FormFieldOptions} from "../types/html-form-field.d.ts"
 import {formItemList} from "./form-item.ts"
 
 type FieldEventHandler = (this: NS.FieldElement, ev: Event) => void

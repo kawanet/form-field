@@ -11,7 +11,7 @@ describe("synopsis", async () => {
         <form>
             <ul>
                 <li>Nickname: <input type="text" name="nickname" value="Alice"></li>
-                <li>Email: <input type="email" name="email"></li>
+                <li>Email: <input type="email" name="email" value="alice@example.com"></li>
                 <li>Favorites:
                     <label><input type="checkbox" name="favo" value="tech">Tech</label>
                     <label><input type="checkbox" name="favo" value="travel">Travel</label>
@@ -25,33 +25,34 @@ describe("synopsis", async () => {
     const console = {log: ((v: string | boolean) => assert.ok(v))}
     const submitForm = (): void => null
     const sessionStorage = {getItem: (name: string): string => null, setItem: (name: string, value: string): void => null}
+    const document = {querySelector: (selector: string) => form}
 
-    it("Get/set value", () => {
-        // import {formField} from "form-field";
+    it("SYNOPSIS", () => {
+        // import {formField} from "html-form-field";
 
-        // const form = document.querySelector("form")
-
-        const nickname = formField({form, name: "nickname"})
-
-        console.log(nickname.value) // current value
-
-        nickname.value = "Bob" // update value
-    })
-
-    it("Property binding", () => {
         interface Context {
             nickname: string
             email: string
             favo: string
         }
 
+        const form = document.querySelector("form")
+
         const ctx = {} as Context
 
-        formField({form, name: "nickname", bindTo: ctx})
+        formField({form, bindTo: ctx, name: "nickname"})
 
         console.log(ctx.nickname) // reads from form field
 
         ctx.nickname = "John" // updates form field
+    })
+
+    it("Value access", () => {
+        const email = formField({form, name: "email"})
+
+        console.log(email.value) // current value
+
+        email.value = "john@example.com" // update value
     })
 
     it("Multiple selections", () => {

@@ -12,7 +12,7 @@ const rollupConfig: RollupOptions = {
         file: "../build/test.browser.js",
         format: "iife",
         globals: {
-            "form-field": "{formField}",
+            "html-form-field": "{formField}",
             "html-ele": "ele",
             "node:assert": "{strict: assert}",
             "node:test": "{describe, it, before, after}",
@@ -20,7 +20,7 @@ const rollupConfig: RollupOptions = {
     },
 
     external: [
-        "form-field",
+        "html-form-field",
         "html-ele",
         "jsdom",
         "node:assert",
@@ -34,7 +34,7 @@ const rollupConfig: RollupOptions = {
 
         alias({
             entries: [
-                {find: /^.*\/src\/index.[jt]s$/, replacement: "form-field"},
+                {find: /^.*\/src\/index.[jt]s$/, replacement: "html-form-field"},
             ],
         }),
 

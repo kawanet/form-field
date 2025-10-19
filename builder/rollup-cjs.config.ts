@@ -7,7 +7,7 @@ const rollupConfig: RollupOptions = {
     input: "../src/index.ts",
 
     output: {
-        file: "../dist/form-field.cjs",
+        file: "../dist/html-form-field.cjs",
         format: "commonjs",
     },
 
