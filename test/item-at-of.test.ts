@@ -27,22 +27,29 @@ describe("item-at-of", async () => {
         assert.ok(first)
         assert.equal(first!.value, "red")
 
-        const outOfRange = colorField.itemAt(999)
-        assert.equal(outOfRange, undefined)
-
         const green = colorField.itemOf("green")
         assert.ok(green)
         assert.equal(green!.value, "green")
+
+        // non-existent value returns undefined
+        assert.equal(colorField.itemAt(999), undefined)
+        assert.equal(colorField.itemOf("purple"), undefined)
     })
 
-    it("checkbox: itemOf (duplicates/dynamic DOM tests omitted)", () => {
+    it("checkbox: itemAt and itemOf", () => {
         const rolesField = formField({form, name: "roles"})
+
+        const first = rolesField.itemAt(2)
+        assert.ok(first)
+        assert.equal(first!.value, "editor")
+        assert.equal(first!.disabled, true)
 
         const editor = rolesField.itemOf("editor")
         assert.ok(editor)
         assert.equal(editor!.value, "editor")
 
         // non-existent value returns undefined
+        assert.equal(rolesField.itemAt(999), undefined)
         assert.equal(rolesField.itemOf("missing"), undefined)
     })
 })
