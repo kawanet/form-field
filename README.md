@@ -14,13 +14,15 @@ Unified interface for HTML form fields with synchronized binding to object prope
 
 ## SYNOPSIS
 
-#### Value access
-
 ```js
 import {formField} from "form-field"
 
 const form = document.querySelector("form")
+```
 
+#### Value access
+
+```js
 const nickname = formField({form, name: "nickname"})
 
 console.log(nickname.value) // current value
@@ -92,9 +94,7 @@ formField({
 #### Option item shortcuts
 
 ```js
-import { formField } from "form-field"
-
-const field = formField({ form, name: "favo" }) // or a select/option field
+const field = formField({form, name: "favo"}) // or a select/option field
 
 // Shortcut to access an item by index (equivalent to items().at(index))
 const firstItem = field.itemAt(0)
