@@ -38,34 +38,24 @@ describe("synopsis", async () => {
         nickname.value = "Bob" // update value
     })
 
-    it("Bind to object property", () => {
+    it("Property binding", () => {
         interface Context {
             nickname: string
             email: string
             favo: string
         }
 
-        const context = {} as Context
+        const ctx = {} as Context
 
-        formField({form, name: "nickname", bindTo: context})
+        formField({form, name: "nickname", bindTo: ctx})
 
-        console.log(context.nickname) // reads from form field
+        console.log(ctx.nickname) // reads from form field
 
-        context.nickname = "John" // updates form field
+        ctx.nickname = "John" // updates form field
     })
 
-    it("Handle changes", () => {
-        formField({
-            form,
-            name: "email",
-            onWrite: ({name, value}) => sessionStorage.setItem(name, value),
-            onChange: ({name, value}) => submitForm(),
-            defaults: [sessionStorage.getItem("email")],
-        })
-    })
-
-    it("Work with checkboxes, radio and select options", () => {
-        const favo = formField({form, name: "favo"})
+    it("Multiple selections", () => {
+        const favo = formField({form, name: "favo", delim: ","})
 
         favo.toggle("tech") // toggle checkbox
 
@@ -74,5 +64,23 @@ describe("synopsis", async () => {
         favo.toggle("trading", false)
 
         console.log(favo.has("travel")) // check if selected
+
+        // Shortcut to item by index. Equivalent to items().at(index))
+        const firstItem = favo.itemAt(0)
+        console.log(firstItem.checked)
+
+        // Shortcut to item by value. Equivalent to items().find(v => v.value === value)
+        const travelItem = favo.itemOf("travel")
+        console.log(travelItem.checked)
+    })
+
+    it("Change handling and defaults", () => {
+        formField({
+            form,
+            name: "email",
+            onWrite: ({name, value}) => sessionStorage.setItem(name, value),
+            onChange: ({name, value}) => submitForm(),
+            defaults: [sessionStorage.getItem("email")],
+        })
     })
 })
