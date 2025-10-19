@@ -14,26 +14,34 @@ Unified interface for HTML form fields with synchronized binding to object prope
 
 ## SYNOPSIS
 
-```js
+```typescript
 import {formField} from "form-field"
+
+interface Context {
+    nickname: string
+    email: string
+    favo: string
+}
 
 const form = document.querySelector("form")
 
-const nickname = formField({form, name: "nickname"})
+const ctx = {} as Context
 
-console.log(nickname.value) // current value
+formField({form, bindTo: ctx, name: "nickname"})
 
-nickname.value = "Bob" // update value
+console.log(ctx.nickname) // reads from form field
+
+ctx.nickname = "John" // updates form field
 ```
 
-#### HTML
+#### HTML Example
 
 ```html
 
 <form>
     <ul>
         <li>Nickname: <input type="text" name="nickname" value="Alice"></li>
-        <li>Email: <input type="email" name="email"></li>
+        <li>Email: <input type="email" name="email" value="alice@example.com"></li>
         <li>Favorites:
             <label><input type="checkbox" name="favo" value="tech">Tech</label>
             <label><input type="checkbox" name="favo" value="travel">Travel</label>
@@ -43,25 +51,17 @@ nickname.value = "Bob" // update value
 </form>
 ```
 
-#### Property binding
+#### Value Access
 
-```typescript
-interface Context {
-    nickname: string
-    email: string
-    favo: string
-}
+```js
+const email = formField({form, name: "email"})
 
-const ctx = {} as Context
+console.log(email.value) // current value
 
-formField({form, name: "nickname", bindTo: ctx})
-
-console.log(ctx.nickname) // reads from form field
-
-ctx.nickname = "John" // updates form field
+email.value = "john@example.com" // update value
 ```
 
-#### Multiple selections
+#### Multiple Selections
 
 ```js
 const favo = formField({form, name: "favo", delim: ","})
@@ -83,15 +83,16 @@ const travelItem = favo.itemOf("travel")
 console.log(travelItem.checked)
 ```
 
-#### Change handling and defaults
+#### Change Handling and Default Values
 
 ```js
 formField({
     form,
+    bindTo: ctx,
     name: "email",
     onWrite: ({name, value}) => sessionStorage.setItem(name, value),
     onChange: ({name, value}) => submitForm(),
-    defaults: [sessionStorage.getItem("email")]
+    defaults: [sessionStorage.getItem("email")],
 })
 ```
 
