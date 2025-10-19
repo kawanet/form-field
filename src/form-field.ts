@@ -188,4 +188,20 @@ class FormBridgeImpl<T = any> implements FormField<T> {
     has(value: string): boolean {
         return !!this.current().find(v => v.value === value)
     }
+
+    /**
+     * Shortcut to access an item by index (operates on items()).
+     * Equivalent to items().at(index). Returns undefined if out of range.
+     */
+    itemAt(index: number): NS.FormItem | undefined {
+        return this.items().at(index)
+    }
+
+    /**
+     * Shortcut to access an item by value (operates on items()).
+     * Returns the first FormItem whose value equals the given value, or undefined if not found.
+     */
+    itemOf(value: string): NS.FormItem | undefined {
+        return this.items().find(v => v.value === value)
+    }
 }
