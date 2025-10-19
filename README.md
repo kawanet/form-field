@@ -89,6 +89,23 @@ formField({
 </form>
 ```
 
+#### Option item shortcuts
+
+```js
+import { formField } from "form-field"
+
+const field = formField({ form, name: "favo" }) // or a select/option field
+
+// Shortcut to access an item by index (equivalent to items().at(index))
+const firstItem = field.itemAt(0)
+
+// Shortcut to access an item by value (finds the first item whose .value === given value)
+const travelItem = field.itemOf("travel")
+
+if (firstItem) firstItem.setChecked(true)
+if (travelItem) console.log(travelItem.value, travelItem.label)
+```
+
 ## LINKS
 
 - https://www.npmjs.com/package/form-field
