@@ -36,6 +36,8 @@ describe("defaults", async () => {
                 <option value="SM2">sm2</option>
                 <option value="SM3" selected>sm3</option>
             </select>
+
+            <textarea name="TA">ta1</textarea>
         </form>
     `)
 
@@ -62,5 +64,20 @@ describe("defaults", async () => {
     it("select-multiple", () => {
         const field = formField({form, name: "SM", defaults: ["SM4", "SM1,SM2"]})
         assert.equal(field.value, "SM1,SM2")
+    })
+
+    it("textarea", () => {
+        const field = formField({form, name: "TA", defaults: ["ta2"]})
+        assert.equal(field.value, "ta2")
+    })
+
+    it("text null", () => {
+        const field = formField({form, name: "TX", defaults: [null, undefined, "tx3"]})
+        assert.equal(field.value, "tx3")
+    })
+
+    it("textarea null", () => {
+        const field = formField({form, name: "TX", defaults: [null, undefined, "ta3"]})
+        assert.equal(field.value, "ta3")
     })
 })

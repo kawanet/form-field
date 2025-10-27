@@ -92,16 +92,12 @@ class FormBridgeImpl<T = any> implements FormField<T> {
 
         const nodeList = getNodeList(options)
         updateEventListener(nodeList, _onChange)
-        const items = this._items = formItemList(this, nodeList)
+        this._items = formItemList(this, nodeList)
 
         const defaults = options.defaults
         if (defaults) {
-            if (items[0].checkable) {
-                for (const v of defaults) {
-                    if (this.setValue(v)) break
-                }
-            } else {
-                this.setValue(defaults)
+            for (const v of defaults) {
+                if (this.setValue(v)) break
             }
         }
     }
